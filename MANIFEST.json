@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "complete_package": true,
+  "included_roots": [
+    "src",
+    "deploy",
+    "docs",
+    "examples",
+    "tests"
+  ],
+  "included_features": [
+    "cli",
+    "api_swagger",
+    "web_ui",
+    "postgresql",
+    "alembic",
+    "workers",
+    "scheduler",
+    "patroni_etcd_haproxy",
+    "ldap",
+    "rbac",
+    "approvals",
+    "itsm_ticketing",
+    "campaign_reports",
+    "audit",
+    "notifications",
+    "inventory",
+    "secrets",
+    "recovery",
+    "governance",
+    "dry_run",
+    "rollback",
+    "tig_supervision",
+    "docker",
+    "helm",
+    "systemd",
+    "ansible"
+  ]
+}

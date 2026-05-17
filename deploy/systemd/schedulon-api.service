@@ -1,0 +1,6 @@
+[Unit]
+Description=Schedulon API
+[Service]
+EnvironmentFile=/etc/schedulon/schedulon.env
+ExecStart=/opt/schedulon/.venv/bin/schedulon api --host 0.0.0.0 --port 8000
+Restart=always

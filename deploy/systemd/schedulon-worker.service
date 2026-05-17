@@ -1,0 +1,6 @@
+[Unit]
+Description=Schedulon Worker
+[Service]
+EnvironmentFile=/etc/schedulon/schedulon.env
+ExecStart=/opt/schedulon/.venv/bin/schedulon worker --worker-id %H
+Restart=always

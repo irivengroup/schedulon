@@ -1,0 +1,7 @@
+image:
+  repository: schedulon
+  tag: '1.0.0'
+api:
+  replicas: 2
+worker:
+  replicas: 4

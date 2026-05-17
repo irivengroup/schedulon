@@ -1,0 +1,4 @@
+- name: Create install dir
+  ansible.builtin.file:
+    path: '{{ schedulon_install_dir }}'
+    state: directory
