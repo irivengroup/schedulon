@@ -1,6 +1,6 @@
 [project]
 name = "schedulon"
-version = "1.0.5"
+version = "1.0.6"
 description = "Production-ready distributed job scheduler and orchestration control plane"
 requires-python = ">=3.9"
 dependencies = [

@@ -1,5 +1,5 @@
 {
-  "version": "1.0.5",
+  "version": "1.0.6",
   "complete_package": true,
   "included_roots": [
     "src",
@@ -55,5 +55,7 @@
     "build_module_fix": true,
     "python39_sqlalchemy_mapped_optional_fix": true,
     "orm_annotation_guard": true
-  }
+  },
+  "docker_seed_demo_fk_fix": true,
+  "docker_validation_script": "deploy/checks/docker_seed_demo_check.sh"
 }

@@ -1,4 +1,4 @@
-# Schedulon 1.0.5
+# Schedulon 1.0.6
 
 Livrable consolidé complet.
 
@@ -61,7 +61,7 @@ Pydantic v2 evaluates annotations during model construction. For Python 3.9,
 as an additional safety dependency.
 
 
-## CI fix 1.0.5
+## CI fix 1.0.6
 
 `build` and `twine` are now installed explicitly in GitHub Actions before
 `python -m build` is executed. This avoids failures on Python 3.13/3.14 where
@@ -73,3 +73,16 @@ optional dev dependencies may not be available in the environment at that step.
 SQLAlchemy evaluates ORM annotations during mapper configuration. The ORM models
 now use `typing.Optional[...]` instead of PEP 604 unions such as
 `datetime | None`, which keeps Alembic migrations compatible with Python 3.9.
+
+
+## Docker seed-demo validation
+
+A Docker-specific validation script is included:
+
+```bash
+deploy/checks/docker_seed_demo_check.sh
+```
+
+It builds the Compose stack, runs Alembic migrations, executes
+`schedulon admin seed-demo`, and verifies that `target_sources`, `targets`,
+and `jobs` were inserted correctly.
