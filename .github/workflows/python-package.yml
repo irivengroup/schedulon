@@ -91,6 +91,10 @@ jobs:
         run: |
           python -m pip_audit || true
 
+      - name: Check Python 3.9 ORM annotation compatibility
+        run: |
+          ! grep -R "Mapped\[.* | None" src/schedulon/infrastructure/db/models.py
+
       - name: Run database migrations
         run: |
           python -m alembic upgrade head
