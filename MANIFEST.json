@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.3",
   "complete_package": true,
   "included_roots": [
     "src",
@@ -41,10 +41,15 @@
       "3.9",
       "3.10",
       "3.11",
-      "3.12"
+      "3.12",
+      "3.13",
+      "3.14"
     ],
     "requirements_txt": true,
     "github_actions": ".github/workflows/python-package.yml",
-    "fix": "CI now installs the package and runtime dependencies before pytest."
+    "fix": "CI now installs the package and runtime dependencies before pytest.",
+    "python_314_ready": true,
+    "python_39_pydantic_union_fix": true,
+    "flake8_dependency_fix": true
   }
 }

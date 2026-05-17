@@ -1,4 +1,4 @@
-# Schedulon 1.0.1
+# Schedulon 1.0.3
 
 Livrable consolidé complet.
 
@@ -48,3 +48,14 @@ Le projet inclut maintenant :
 - `requirements.txt` pour les workflows qui installent uniquement `requirements.txt`
 - `.github/workflows/python-package.yml` complet
 - compatibilité syntaxique Python 3.9 → 3.12
+
+
+- Compatibilité CI étendue jusqu'à Python 3.14.
+
+
+## Python 3.9 compatibility fix
+
+Pydantic v2 evaluates annotations during model construction. For Python 3.9,
+`str | None` is not valid during that evaluation. Schedulon now uses
+`typing.Optional[...]` in Pydantic-facing settings and includes `eval-type-backport`
+as an additional safety dependency.

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Dict, List, Optional
 from datetime import datetime, timezone
 from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, JSON, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
@@ -13,10 +14,10 @@ class Job(Base):
     name: Mapped[str] = mapped_column(String(255), unique=True, index=True)
     execution_backend: Mapped[str] = mapped_column(String(64))
     backend_config: Mapped[dict] = mapped_column(JSON, default=dict)
-    target_source_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    target_source_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
     environment: Mapped[str] = mapped_column(String(32), default="development")
     schedule_type: Mapped[str] = mapped_column(String(32), default="manual")
-    schedule_expr: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    schedule_expr: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     timezone: Mapped[str] = mapped_column(String(64), default="Europe/Paris")
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     requires_approval: Mapped[bool] = mapped_column(Boolean, default=False)
@@ -48,12 +49,12 @@ class JobRun(Base):
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
     job_id: Mapped[str] = mapped_column(String(64), ForeignKey("jobs.id"), index=True)
     status: Mapped[str] = mapped_column(String(32), default="pending", index=True)
-    actor_id: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    actor_id: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     actor_type: Mapped[str] = mapped_column(String(64), default="user")
-    ticket_number: Mapped[str | None] = mapped_column(String(128), nullable=True)
+    ticket_number: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
     environment: Mapped[str] = mapped_column(String(32), default="development")
     runtime_config: Mapped[dict] = mapped_column(JSON, default=dict)
-    idempotency_key: Mapped[str | None] = mapped_column(String(255), nullable=True, index=True)
+    idempotency_key: Mapped[Optional[str]] = mapped_column(String(255), nullable=True, index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
@@ -63,18 +64,18 @@ class TargetRun(Base):
     __tablename__ = "target_runs"
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
     run_id: Mapped[str] = mapped_column(String(64), ForeignKey("job_runs.id", ondelete="CASCADE"), index=True)
-    target_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    target_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
     target_name: Mapped[str] = mapped_column(String(255))
     target_address: Mapped[str] = mapped_column(String(255))
     target_vars: Mapped[dict] = mapped_column(JSON, default=dict)
     status: Mapped[str] = mapped_column(String(32), default="queued", index=True)
     attempt: Mapped[int] = mapped_column(Integer, default=0)
-    locked_by: Mapped[str | None] = mapped_column(String(255), nullable=True, index=True)
+    locked_by: Mapped[Optional[str]] = mapped_column(String(255), nullable=True, index=True)
     locked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
-    exit_code: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
+    exit_code: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    error_message: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     result: Mapped[dict] = mapped_column(JSON, default=dict)
 
 class Approval(Base):
@@ -82,8 +83,8 @@ class Approval(Base):
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
     run_id: Mapped[str] = mapped_column(String(64), ForeignKey("job_runs.id", ondelete="CASCADE"), index=True)
     status: Mapped[str] = mapped_column(String(32), default="pending")
-    requested_by: Mapped[str | None] = mapped_column(String(255), nullable=True)
-    approved_by: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    requested_by: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    approved_by: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     decided_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
@@ -91,22 +92,22 @@ class AuditEvent(Base):
     __tablename__ = "audit_events"
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
     actor_type: Mapped[str] = mapped_column(String(64), default="user")
-    actor_id: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    actor_id: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     action: Mapped[str] = mapped_column(String(255), index=True)
     entity_type: Mapped[str] = mapped_column(String(64), index=True)
-    entity_id: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
+    entity_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True, index=True)
     metadata_json: Mapped[dict] = mapped_column(JSON, default=dict)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, index=True)
 
 class Notification(Base):
     __tablename__ = "notifications"
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
-    run_id: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
+    run_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True, index=True)
     channel: Mapped[str] = mapped_column(String(64))
     recipients: Mapped[list] = mapped_column(JSON, default=list)
     subject: Mapped[str] = mapped_column(String(512))
     status: Mapped[str] = mapped_column(String(32), default="pending")
-    provider_message_id: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    provider_message_id: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
 class DistributedLock(Base):
