@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "complete_package": true,
   "included_roots": [
     "src",
@@ -50,6 +50,8 @@
     "fix": "CI now installs the package and runtime dependencies before pytest.",
     "python_314_ready": true,
     "python_39_pydantic_union_fix": true,
-    "flake8_dependency_fix": true
+    "flake8_dependency_fix": true,
+    "explicit_ci_tool_install": true,
+    "build_module_fix": true
   }
 }

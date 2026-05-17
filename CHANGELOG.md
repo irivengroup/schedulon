@@ -22,10 +22,18 @@
 - Enabled prerelease interpreter support for forward compatibility.
 
 
-## 1.0.3
+## 1.0.4
 
 - Fixed Python 3.9 Alembic/Pydantic failure caused by `str | None` annotations.
 - Rewrote Settings with `typing.Optional`.
 - Added `eval-type-backport`.
 - Added `flake8` to dev dependencies.
 - Hardened CI by using `python -m flake8`, `python -m alembic`, and tool sanity checks.
+
+
+## 1.0.4
+
+- Fixed CI failure: `No module named build`.
+- Installed CI tooling explicitly before running packaging checks.
+- Added `requirements-ci.txt` for clarity.
+- Moved packaging validation after lint, migration and tests in the matrix job.

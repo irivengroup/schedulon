@@ -1,4 +1,4 @@
-# Schedulon 1.0.3
+# Schedulon 1.0.4
 
 Livrable consolidé complet.
 
@@ -59,3 +59,10 @@ Pydantic v2 evaluates annotations during model construction. For Python 3.9,
 `str | None` is not valid during that evaluation. Schedulon now uses
 `typing.Optional[...]` in Pydantic-facing settings and includes `eval-type-backport`
 as an additional safety dependency.
+
+
+## CI fix 1.0.4
+
+`build` and `twine` are now installed explicitly in GitHub Actions before
+`python -m build` is executed. This avoids failures on Python 3.13/3.14 where
+optional dev dependencies may not be available in the environment at that step.
