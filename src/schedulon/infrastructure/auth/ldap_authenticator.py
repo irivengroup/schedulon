@@ -1,3 +1,4 @@
+from __future__ import annotations
 class LdapAuthenticationError(Exception): pass
 class LdapAccessDeniedError(Exception): pass
 class LdapAuthenticator:

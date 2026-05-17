@@ -1,3 +1,4 @@
+from __future__ import annotations
 from fastapi import APIRouter
 from schedulon.application.recovery.service import recover_orphan_runs
 router=APIRouter()

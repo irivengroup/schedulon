@@ -1,10 +1,11 @@
+from __future__ import annotations
 from fastapi import APIRouter, Response
 from schedulon.infrastructure.db.session import check_database
 router=APIRouter()
 @router.get('/ready')
-def ready(): return {'status':'PROD_READY','version':'1.0.0'}
+def ready(): return {'status':'PROD_READY','version':'1.0.1'}
 @router.get('/health')
-def health(): return {'status':'PROD_READY','component':'schedulon-api','version':'1.0.0'}
+def health(): return {'status':'PROD_READY','component':'schedulon-api','version':'1.0.1'}
 @router.get('/db/health')
 def db_health(): return check_database()
 @router.get('/metrics', include_in_schema=False)

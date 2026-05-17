@@ -1,3 +1,4 @@
+from __future__ import annotations
 from schedulon.interfaces.cli.app import app
 
 def main() -> None:

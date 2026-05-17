@@ -1,3 +1,4 @@
+from __future__ import annotations
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from schedulon.infrastructure.config.settings import Settings

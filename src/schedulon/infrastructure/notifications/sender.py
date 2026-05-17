@@ -1,3 +1,4 @@
+from __future__ import annotations
 class NotificationSender:
     def __init__(self, settings): self.settings=settings
     def send(self, channel, recipients, subject, body):

@@ -1,3 +1,4 @@
+from __future__ import annotations
 from fastapi import APIRouter
 from schedulon.application.governance.service import validate_preflight
 router=APIRouter()

@@ -1,5 +1,6 @@
-from enum import StrEnum
-class ExecutionBackend(StrEnum):
+from __future__ import annotations
+from enum import Enum
+class ExecutionBackend(str, Enum):
     COMMAND='command'
     SCRIPT_INLINE='script_inline'
     SCRIPT_FILE='script_file'

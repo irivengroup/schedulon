@@ -1,3 +1,4 @@
+from __future__ import annotations
 from fastapi import APIRouter, Depends, Response
 from sqlalchemy.orm import Session
 from schedulon.infrastructure.db.session import get_session

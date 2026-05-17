@@ -1,3 +1,4 @@
+from __future__ import annotations
 from fastapi import APIRouter
 from schedulon.application.templates.service import dry_run_campaign, rollback_campaign
 router=APIRouter()

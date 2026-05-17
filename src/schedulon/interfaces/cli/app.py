@@ -1,3 +1,4 @@
+from __future__ import annotations
 import subprocess, json
 import typer, uvicorn, httpx
 from rich.console import Console
@@ -15,7 +16,7 @@ def worker(worker_id:str='worker-local'): console.print(f'Worker {worker_id} rea
 @app.command()
 def scheduler(): console.print('Scheduler ready')
 @app.command()
-def version(): console.print('schedulon 1.0.0')
+def version(): console.print('schedulon 1.0.1')
 @db_app.command('upgrade')
 def db_upgrade(): subprocess.run(['alembic','upgrade','head'], check=True); console.print('PROD_READY')
 @db_app.command('rollback')

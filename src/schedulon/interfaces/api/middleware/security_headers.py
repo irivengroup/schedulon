@@ -1,3 +1,4 @@
+from __future__ import annotations
 async def security_headers_middleware(request, call_next):
     response=await call_next(request)
     response.headers.setdefault('X-Content-Type-Options','nosniff')

@@ -1,4 +1,4 @@
-# Schedulon 1.0.0
+# Schedulon 1.0.1
 
 Livrable consolidé complet.
 
@@ -40,3 +40,11 @@ docker compose exec app schedulon admin seed-demo
 
 UI: http://localhost:8000/ui  
 Swagger: http://localhost:8000/docs
+
+
+## CI
+
+Le projet inclut maintenant :
+- `requirements.txt` pour les workflows qui installent uniquement `requirements.txt`
+- `.github/workflows/python-package.yml` complet
+- compatibilité syntaxique Python 3.9 → 3.12

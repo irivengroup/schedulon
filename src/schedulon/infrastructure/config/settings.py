@@ -1,3 +1,4 @@
+from __future__ import annotations
 from functools import cached_property
 from pydantic import Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict

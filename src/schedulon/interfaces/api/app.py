@@ -1,3 +1,4 @@
+from __future__ import annotations
 from pathlib import Path
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
@@ -6,7 +7,7 @@ from schedulon.interfaces.api.middleware.security_headers import security_header
 from schedulon.interfaces.api.routes import admin, approvals, audit, auth, governance, health, jobs, recovery, reports, runtime, runs, targets, templates
 
 def create_app() -> FastAPI:
-    app = FastAPI(title="Schedulon API", version="1.0.0", docs_url="/docs", redoc_url="/redoc", openapi_url="/openapi.json")
+    app = FastAPI(title="Schedulon API", version="1.0.1", docs_url="/docs", redoc_url="/redoc", openapi_url="/openapi.json")
     app.middleware("http")(security_headers_middleware)
     app.include_router(health.router, prefix="/api/v1", tags=["health"])
     app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])

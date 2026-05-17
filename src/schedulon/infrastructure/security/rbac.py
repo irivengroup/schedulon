@@ -1,3 +1,4 @@
+from __future__ import annotations
 ROLE_PERMISSIONS = {
     "admin": {"*"},
     "operator": {"job:read","job:create","job:trigger","run:read","report:read","report:send","target:import"},

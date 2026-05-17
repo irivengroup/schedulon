@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "complete_package": true,
   "included_roots": [
     "src",
@@ -35,5 +35,16 @@
     "helm",
     "systemd",
     "ansible"
-  ]
+  ],
+  "ci": {
+    "python_versions": [
+      "3.9",
+      "3.10",
+      "3.11",
+      "3.12"
+    ],
+    "requirements_txt": true,
+    "github_actions": ".github/workflows/python-package.yml",
+    "fix": "CI now installs the package and runtime dependencies before pytest."
+  }
 }
